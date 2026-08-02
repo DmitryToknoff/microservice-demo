@@ -1,13 +1,14 @@
-package postgres
+package order_repository_postgres
 
 import (
 	"context"
 	"errors"
 	"fmt"
 
-	"github.com/DmitryToknoff/microservice-demo/internal/order/domain"
-	"github.com/DmitryToknoff/microservice-demo/pkg/postgres"
 	"github.com/jackc/pgx/v5"
+
+	domain "github.com/DmitryToknoff/microservice-demo/internal/order/domain"
+	"github.com/DmitryToknoff/microservice-demo/pkg/postgres"
 )
 
 type OrderRepository struct {
@@ -19,7 +20,7 @@ func NewOrderRepository(pool *postgres.Pool) *OrderRepository {
 }
 
 func (r *OrderRepository) Create(ctx context.Context, order *domain.Order) error {
-	ctx, cancel := r.pool.ExecContext(ctx)
+	ctx, cancel := context.WithTimeout(ctx, r.pool.OpTimeout)
 	defer cancel()
 
 	query := `
@@ -30,6 +31,7 @@ func (r *OrderRepository) Create(ctx context.Context, order *domain.Order) error
 
 	err := r.pool.QueryRow(ctx, query, order.UserID, order.Amount, domain.StatusCreated).
 		Scan(&order.ID, &order.CreatedAt)
+
 	if err != nil {
 		return fmt.Errorf("create order in db: %w", err)
 	}
@@ -39,7 +41,7 @@ func (r *OrderRepository) Create(ctx context.Context, order *domain.Order) error
 }
 
 func (r *OrderRepository) GetByID(ctx context.Context, id int64) (*domain.Order, error) {
-	ctx, cancel := r.pool.ExecContext(ctx)
+	ctx, cancel := context.WithTimeout(ctx, r.pool.OpTimeout)
 	defer cancel()
 
 	query := `
