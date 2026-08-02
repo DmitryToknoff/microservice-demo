@@ -55,7 +55,6 @@ func (c *Consumer) Start(ctx context.Context) {
 				continue
 			}
 
-			// 2. UNMARSHAL
 			var event OrderCreatedEvent
 			if err := json.Unmarshal(msg.Value, &event); err != nil {
 				c.log.Error("failed to unmarshal kafka event, skipping message", zap.Error(err))
