@@ -14,10 +14,10 @@ import (
 
 type Server struct {
 	pb.UnimplementedOrderServiceServer
-	service *service.OrderService
+	service *order_service.OrderService
 }
 
-func NewServer(svc *service.OrderService) *Server {
+func NewServer(svc *order_service.OrderService) *Server {
 	return &Server{service: svc}
 }
 

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package delivery;
+
+option go_package = "microservices-shop/pkg/pb";
+
+service DeliveryService {
+  rpc GetDeliveryStatus (GetDeliveryStatusRequest) returns (DeliveryStatusResponse);
+}
+
+message GetDeliveryStatusRequest {
+  int64 order_id = 1;
+}
+
+message DeliveryStatusResponse {
+  int64 order_id = 1;
+  string status = 2;
+  string address = 3;
+}
