@@ -24,7 +24,7 @@ import (
 )
 
 var (
-	kafkaBrokers = []string{"kafka-1:9092", "kafka-2:9093", "kafka-3:9094"}
+	kafkaBrokers = []string{"kafka-1:29092", "kafka-2:29093", "kafka-3:29094"}
 	grpcPort     = ":50051"
 )
 
