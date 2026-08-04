@@ -1,4 +1,4 @@
-Архитектура системы
+## Архитектура системы
                                
                                ┌──────────────────────┐
                                │     Client / Web     │
@@ -24,6 +24,7 @@
 
 
 ### Стек технологий
+```text
 ⚬	Язык программирования: Go 1.24+
 ⚬	Транспорт & Протоколы: gRPC, Protobuf, REST (HTTP/JSON), segmentio/kafka-go
 ⚬	Базы данных & Кэш: PostgreSQL (pgx/v5 pool), Redis
@@ -31,7 +32,7 @@
 ⚬	Конфигурирование: kelseyhightower/envconfig
 ⚬	Логирование: uber-go/zap
 ⚬	Контейнеризация: Docker, Docker Compose (Multi-stage builds, Alpine base images)
-
+```
 
 ## Структура проекта
 
