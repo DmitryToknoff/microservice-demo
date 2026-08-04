@@ -17,7 +17,9 @@ import (
 )
 
 var (
-	httpPort = ":8080"
+	httpPort        = ":8080"
+	orderSvcAddr    = "localhost:50051"
+	deliverySvcAddr = "localhost:50052"
 )
 
 func main() {
@@ -28,23 +30,13 @@ func main() {
 	log := logger.NewLoggerMust(logCfg)
 	defer log.Close()
 
-	log.Info("Starting API Gateway...")
-
-	orderSvcAddr := os.Getenv("ORDER_SERVICE_GRPC_HOST")
-	if orderSvcAddr == "" {
-		orderSvcAddr = "localhost:50051"
-	}
+	log.Info("Starting API Gateway")
 
 	orderClient, err := gatewayClient.NewOrderClient(orderSvcAddr)
 	if err != nil {
 		log.Fatal("failed to connect to order service", zap.Error(err))
 	}
 	defer orderClient.Close()
-
-	deliverySvcAddr := os.Getenv("DELIVERY_SERVICE_GRPC_HOST")
-	if deliverySvcAddr == "" {
-		deliverySvcAddr = "localhost:50052"
-	}
 
 	deliveryClient, err := gatewayClient.NewDeliveryClient(deliverySvcAddr)
 	if err != nil {
