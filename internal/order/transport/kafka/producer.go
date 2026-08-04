@@ -47,7 +47,7 @@ func (p *Producer) PublishOrderCreated(ctx context.Context, order *domain.Order)
 		Key:   []byte(fmt.Sprintf("%d", order.ID)),
 		Value: payload,
 	}
-
+	
 	if err := p.writer.WriteMessages(ctx, msg); err != nil {
 		return fmt.Errorf("write kafka message: %w", err)
 	}
