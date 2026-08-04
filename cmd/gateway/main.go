@@ -18,8 +18,8 @@ import (
 
 var (
 	httpPort        = ":8080"
-	orderSvcAddr    = "localhost:50051"
-	deliverySvcAddr = "localhost:50052"
+	orderSvcAddr    = "order-service:50051"
+	deliverySvcAddr = "delivery-service:50052"
 )
 
 func main() {

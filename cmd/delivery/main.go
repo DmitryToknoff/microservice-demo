@@ -21,9 +21,9 @@ import (
 )
 
 var (
-	kafkaBrokers = []string{"localhost:9092", "localhost:9093", "localhost:9094"}
-	kafkaTopic = "order.created"
-	groupID = "delivery-service-group"
+	kafkaBrokers = []string{"kafka-1:9092", "kafka-2:9093", "kafka-3:9094"}
+	kafkaTopic   = "order.created"
+	groupID      = "delivery-service-group"
 
 	grpcPort = ":50052"
 )
