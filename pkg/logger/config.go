@@ -3,7 +3,7 @@ package logger
 import "github.com/kelseyhightower/envconfig"
 
 type Config struct {
-	Level  string `envconfig:"LEVEL" default:"info"`
+	Level  string `envconfig:"LEVEL" default:"debug"`
 	Folder string `envconfig:"FOLDER" default:"./logs"`
 }
 

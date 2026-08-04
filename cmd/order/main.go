@@ -24,8 +24,8 @@ import (
 )
 
 var (
-	kafkaBrokers = []string{"localhost:9092", "localhost:9093", "localhost:9094"}
-	grpcPort = ":50051"
+	kafkaBrokers = []string{"kafka-1:9092", "kafka-2:9093", "kafka-3:9094"}
+	grpcPort     = ":50051"
 )
 
 func main() {
@@ -64,7 +64,6 @@ func main() {
 
 	service := orderSvc.NewOrderService(pgRepository, redisCache, producer, log)
 	grpcHandler := orderGrpc.NewServer(service)
-
 
 	listener, err := net.Listen("tcp", grpcPort)
 	if err != nil {
