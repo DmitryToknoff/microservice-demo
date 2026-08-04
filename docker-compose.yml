@@ -1,4 +1,48 @@
 services:
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: cmd/gateway/Dockerfile
+    container_name: shop_api_gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - order-service
+      - delivery-service
+    restart: unless-stopped
+
+
+  order-service:
+    build:
+      context: .
+      dockerfile: cmd/order/Dockerfile
+    container_name: shop_order_service
+    ports:
+      - "50051:50051"
+    depends_on:
+      - postgres
+      - redis
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    restart: unless-stopped
+
+  delivery-service:
+    build:
+      context: .
+      dockerfile: cmd/delivery/Dockerfile
+    container_name: shop_delivery_service
+    ports:
+      - "50052:50052"
+    depends_on:
+      - postgres
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    restart: unless-stopped
+
+
   postgres:
     image: postgres
     container_name: shop_postgres
