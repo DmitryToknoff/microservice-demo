@@ -76,6 +76,10 @@
 docker compose up -d --build
 ```
 
+```bash
+make migrate-up
+```
+
 ## Примеры использования (REST API)
 
 1. Создание нового заказа
