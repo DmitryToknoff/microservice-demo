@@ -31,7 +31,7 @@
 ⚬	Брокер сообщений: Apache Kafka (Кластер из 3-х брокеров) + Zookeeper
 ⚬	Конфигурирование: kelseyhightower/envconfig
 ⚬	Логирование: uber-go/zap
-⚬	Контейнеризация: Docker, Docker Compose (Multi-stage builds, Alpine base images)
+⚬	Контейнеризация: Docker, Docker Compose (Multi-stage builds)
 ```
 
 ## Структура проекта
